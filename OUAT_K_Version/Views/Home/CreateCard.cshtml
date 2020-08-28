@@ -1,0 +1,120 @@
+﻿@model OUAT_K_Version.Models.ElementModels
+
+@{
+    ViewBag.Title = "CreateCard";
+}
+
+<h2>CreateCard</h2>
+
+
+@using (Html.BeginForm("CreateCard","Home",FormMethod.Post, new { enctype = "multipart/form-data"}))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>ElementModels</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.ElementType, htmlAttributes: new { @class = "control-label col-md-2" })
+
+        <div class="col-md-10">
+            <select class="form-control" id="ET" name="ET">
+                <option value="Character">Character</option>
+                <option value="Event">Event</option>
+                <option value="Place">Place</option>
+                <option value="Item">Item</option>
+                <option value="Status">Status</option>
+            </select>
+
+            @Html.ValidationMessageFor(model => model.ElementType, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ElementName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ElementName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ElementName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.InSan, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.InSan, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.InSan, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DeSan, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DeSan, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DeSan, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IsForce, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+
+                <div class="col-md-10">
+                    <select class="form-control" id="IF" name="IF">
+                        <option value="False">False</option>
+                        <option value="True">True</option>
+                    </select>
+
+                    @Html.ValidationMessageFor(model => model.IsForce, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IsInter, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+
+
+                <div class="col-md-10">
+                    <select class="form-control" id="II" name="II">
+                        <option value="False">False</option>
+                        <option value="True">True</option>
+                    </select>
+
+                    @Html.ValidationMessageFor(model => model.IsInter, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ElementDes, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ElementDes, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ElementDes, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ImagePath, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10 custom-file">
+           <input class="custom-file-input" type="file" name="image1" id="image1" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

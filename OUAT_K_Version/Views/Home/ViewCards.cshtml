@@ -1,0 +1,77 @@
+﻿@model IEnumerable<OUAT_K_Version.Models.ElementModels>
+
+@{
+    ViewBag.Title = "ViewCards";
+}
+
+<h2>ViewCards</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ElementType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ElementName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InSan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeSan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsForce)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsInter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ElementDes)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ElementType)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ElementName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.InSan)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DeSan)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.IsForce)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.IsInter)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ElementDes)
+    </td>
+    <td>
+        @{ 
+            var base64 = Convert.ToBase64String(item.ImagePath);
+            var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+
+        }
+         <img src="@imgsrc" style="max-height:100px; max-width:100px" />
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+    </td>
+</tr>
+}
+
+</table>

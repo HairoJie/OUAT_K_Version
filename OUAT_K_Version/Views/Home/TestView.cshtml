@@ -1,0 +1,389 @@
+﻿@model OUAT_K_Version.Models.ElementModels
+
+
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<div class="container" style="margin-top:3%">
+
+    <a href="#" class="btn btn-info" onclick="AddNewCard()">Add new Card</a><br />
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+
+                <th>Element Type</th>
+                <th>Element Name</th>
+                <th>Add San</th>
+                <th>Minus San</th>
+                <th>Is Force?</th>
+                <th>Is Inter?</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Action(Edit)</th>
+                <th>Action(Delete)</th>
+                <th>Action(Upload Image)</th>
+
+            </tr>
+        </thead>
+        <tbody id="SetCardList">
+        </tbody>
+    </table>
+
+
+</div>
+
+
+@*hidden modal*@
+<div class="modal fade" id="MyModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4 id="ModalTitle"></h4>
+            </div>
+            <div class="modal-body">
+                <form id="form" enctype="multipart/form-data">
+                    <fieldset id="SubmitForm">
+                        <input type="hidden" id="CardN">
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.ElementName, new { @id = "eleName", @class = "form-control", @placeholder = "Card Name*" })
+                        </div>
+
+                        <div class="form-group">
+
+
+                            <select class="form-control" id="ET" name="ET">
+                                <option value="Character">Character</option>
+                                <option value="Event">Event</option>
+                                <option value="Place">Place</option>
+                                <option value="Item">Item</option>
+                                <option value="Status">Status</option>
+                            </select>
+
+                            @Html.ValidationMessageFor(model => model.ElementType, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.InSan, new { @id = "insan", @class = "form-control", @placeholder = "Add San*" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.DeSan, new { @id = "desan", @class = "form-control", @placeholder = "Minus San*" })
+                        </div>
+                        <div class="form-group">
+
+                            <select class="form-control" id="IF" name="IF">
+                                <option value="False">False</option>
+                                <option value="True">True</option>
+                            </select>
+
+                            @Html.ValidationMessageFor(model => model.IsForce, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+
+
+                            <select class="form-control" id="II" name="II">
+                                <option value="False">False</option>
+                                <option value="True">True</option>
+                            </select>
+
+                            @Html.ValidationMessageFor(model => model.IsInter, "", new { @class = "text-danger" })
+
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.TextAreaFor(m => m.ElementDes, new { @id = "eleDes", @class = "form-control", @placeholder = "Descrpition*" })
+                        </div>
+
+                        <div class="form-group">
+                            <a href="#" class="btn btn-block btn-info" id="SaveCard">Save</a>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*Update modal*@
+<div class="modal fade" id="UpModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4 id="ModalTitle"></h4>
+            </div>
+            <div class="modal-body">
+                <form id="form" enctype="multipart/form-data">
+                    <fieldset id="UpdateForm">
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.ElementName, new { @id = "UeleName", @class = "form-control", @placeholder = "Card Name*", @readonly="readonly"})
+                        </div>
+
+                        <div class="form-group">
+
+
+                            <select class="form-control" id="UET" name="UET">
+                                <option value="Character">Character</option>
+                                <option value="Event">Event</option>
+                                <option value="Place">Place</option>
+                                <option value="Item">Item</option>
+                                <option value="Status">Status</option>
+                            </select>
+
+                            @Html.ValidationMessageFor(model => model.ElementType, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.InSan, new { @id = "Uinsan", @class = "form-control", @placeholder = "Add San*" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.DeSan, new { @id = "Udesan", @class = "form-control", @placeholder = "Minus San*" })
+                        </div>
+                        <div class="form-group">
+
+                            <select class="form-control" id="UIF" name="UIF">
+                                <option value="False">False</option>
+                                <option value="True">True</option>
+                            </select>
+
+                            @Html.ValidationMessageFor(model => model.IsForce, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+
+
+                            <select class="form-control" id="UII" name="UII">
+                                <option value="False">False</option>
+                                <option value="True">True</option>
+                            </select>
+
+                            @Html.ValidationMessageFor(model => model.IsInter, "", new { @class = "text-danger" })
+
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.TextAreaFor(m => m.ElementDes, new { @id = "UeleDes", @class = "form-control", @placeholder = "Descrpition*" })
+                        </div>
+
+                        <div class="form-group">
+                            <a href="#" class="btn btn-block btn-info" id="UpdateCard">Update</a>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Update image modal*@
+<div class="modal fade" id="ImgModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4 id="ImgModalTitle"></h4>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("TestView", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="CardNIMG" id="CardNIMG">
+                    <div class="form-group">
+                        <label>Choose image</label>
+                        <div class="custom-file">
+                            <input class="custom-file-input" type="file" name="image1" id="image1" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-default" />
+                    </div>
+
+                   
+                }
+                </div>
+        </div>
+    </div>
+</div>
+
+@*Popup for delete*@
+
+<div class="modal fade" id="DeleteConf">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal" &times;</a>
+                <h4>Delete Card</h4>
+            </div>
+            <div>
+                <h4>Are you sure?</h4>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn-primary" data-dismiss="modal">Cancle</a>
+                <a href="#" class="btn-danger" onclick="ConfirmDelete()">Confirm</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $.get("/Home/GetCardList", null, DataBind);
+    function DataBind(CardList) {
+        var SetData = $("#SetCardList");
+        for (var i = 0; i < CardList.length; i++) {
+
+            var Data = "<tr class='row_" + CardList[i].ElementName + "'>" +
+                "<td>" + CardList[i].ElementType + "</td>" +
+                "<td>" + CardList[i].ElementName + "</td>" +
+                "<td>" + CardList[i].InSan + "</td>" +
+                "<td>" + CardList[i].DeSan + "</td>" +
+                "<td>" + CardList[i].IsForce + "</td>" +
+                "<td>" + CardList[i].IsInter + "</td>" +
+                "<td>" + CardList[i].ElementDes + "</td>" +
+                "<td>" + "<img src='" + CardList[i].convPath + "'style='max-height:100px; max-width:100px' />" + "</td>" +
+                "<td>" + "<a href='#' class='btn btn-warning' onclick='EditCardRecord(\"" + CardList[i].ElementName + "\")'><span class='glyphicon glyphicon-edit'></span></a>" + "</td>" +
+                "<td>" + "<a href='#' class='btn btn-danger' onclick='DeleteCardRecord(\"" + CardList[i].ElementName + "\")'><span class='glyphicon glyphicon-trash'></span></a>" + "</td>"+
+                "<td>" + "<a href='#' class='btn btn-primary' onclick='UploadImage(\"" + CardList[i].ElementName + "\")'><span class='glyphicon glyphicon-trash'></span></a>" + "</td>"
+            "</tr>";
+
+
+
+
+            SetData.append(Data);
+            $("#LoadingStatus").html(" ");
+        }
+
+    }
+
+    //Show create pop up
+    function AddNewCard() {
+        $("#form")[0].reset();
+        $("#ImgModalTitle").html("Upload Image");
+        $("#MyModal").modal();
+    }
+
+    function UploadImage(name) {
+        $("#CardNIMG").val(name);
+        $("#form")[0].reset();
+        $("#ModalTitle").html("Add New Card");
+        $("#ImgModal").modal();
+    }
+
+    //show update pop up
+    function EditCardRecord(name) {
+
+        var url = "/Home/GetCardByName?name=" + name;
+        $("#UpModal").modal();
+        $.ajax({
+
+            type: "GET",
+            url: url,
+            success: function (data) {
+
+                var obj = JSON.parse(data);
+                $("#UeleName").val(obj.ElementName);
+                $("#UET option:selected").text(obj.ElementType);
+                $("#Uinsan").val(obj.InSan);
+                $("#Udesan").val(obj.DeSan);
+                $("#UIF option:selected").text(obj.IsForce);
+                $("#UII option:selected").text(obj.IsInter);
+                $("#UeleDes").val(obj.ElementDes);
+
+            }
+
+
+
+        })
+    }
+
+   function AddImg() {
+        $("#form")[0].reset();
+        $("#ImgModalTitle").html("Update Image");
+        $("#Img").modal();
+    }
+
+    //Save new card
+    $("#SaveCard").click(function () {
+
+        var data = $("#SubmitForm").serialize();
+        //var image1 = $("#image1").prop("files")[0];
+
+        //var form_data = new FormData(this);
+
+        //form_data.append("file", image1);
+
+
+        $.ajax({
+
+            type: "Post",
+            url: "/Home/SaveCard",
+            data: data,
+            success: function () {
+                alert("Success...");
+                window.location.href = "/Home/TestView";
+                $("#MyModal").modal("hide");
+
+            }
+
+        })
+
+    })
+
+    //Update card
+    $("#UpdateCard").click(function () {
+
+        var data = $("#UpdateForm").serialize();
+
+
+        $.ajax({
+
+            type: "Post",
+            url: "/Home/UpdateCard",
+            data: data,
+            success: function () {
+                alert("Success...");
+                window.location.href = "/Home/TestView";
+                $("#UpModal").modal("hide");
+
+            }
+
+        })
+
+    })
+
+    //Show the delete popup
+
+    function DeleteCardRecord(name) {
+        $("#CardN").val(name);
+        $("#DeleteConf").modal("show");
+    }
+
+    function ConfirmDelete() {
+        var Cname = $("#CardN").val();
+        $.ajax({
+
+            type: "POST",
+            url: "/Home/DeleteCardRecord?Ename=" + Cname,
+            success: function (result) {
+                $("#DeleteConf").modal("hide");
+                $(".row_" + Cname).remove();
+
+
+            }
+
+
+        })
+
+    }
+
+</script>
+

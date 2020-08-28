@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="31a3280a-1e4a-45e5-b1b1-4a2250faba07" ChangeDateTime="04/13/2020 08:23:06">
+    <Property Name="ElementName" Value="[dbo].[CardTBL].[elementType]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CardTBL]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ElementType" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a5774fea-f161-441b-a021-5fcf214e122a" ChangeDateTime="04/13/2020 08:23:08">
+    <Property Name="ElementName" Value="[dbo].[CardTBL].[elementName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CardTBL]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ElementName" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b2e4b3db-2803-4050-99b9-d9db59306fad" ChangeDateTime="04/13/2020 08:23:14">
+    <Property Name="ElementName" Value="[dbo].[CardTBL].[inSan]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CardTBL]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="InSan" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="46a3b4b4-9e1a-44a5-89ce-08f07310b5ec" ChangeDateTime="04/13/2020 08:23:18">
+    <Property Name="ElementName" Value="[dbo].[CardTBL].[deSan]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CardTBL]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DeSan" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7f501f57-3242-4a61-8c95-5bb90bce46dc" ChangeDateTime="04/13/2020 08:23:21">
+    <Property Name="ElementName" Value="[dbo].[CardTBL].[isForce]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CardTBL]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IsForce" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f8e62b4c-14f9-4381-a17a-be635b8e0c01" ChangeDateTime="04/13/2020 08:23:25">
+    <Property Name="ElementName" Value="[dbo].[CardTBL].[isInter]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CardTBL]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IsInter" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6a2d2ebd-c694-45d4-a899-fe99204b2bd2" ChangeDateTime="04/13/2020 08:23:27">
+    <Property Name="ElementName" Value="[dbo].[CardTBL].[elementDes]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CardTBL]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ElementDes" />
+  </Operation>
+</Operations>
